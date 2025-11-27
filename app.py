@@ -12,7 +12,7 @@ from textwrap import wrap
 CURRENT_YEAR = 2025
 FIXED_NAME_24 = "Sachuriga"  # Secretly fixed to Day 24
 # 👇 PASTE YOUR GITHUB LINK HERE 👇
-DATA_URL = "https://github.com/Sachuriga/GenzelLab_2025_advencalender/blob/d59453357d208e35aba7f345c3a04e471bd650d6/name%20list_names.xlsx?raw=true"
+DATA_URL = "https://github.com/Sachuriga/GenzelLab_2025_advencalender/blob/668948fdec3560bc3b416a314e0f014f57380d45/name%20list_names.xlsx?raw=true"
 
 # --- Page Setup ---
 st.set_page_config(
