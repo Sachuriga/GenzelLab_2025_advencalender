@@ -5,7 +5,7 @@ import datetime
 
 # --- Configuration ---
 CURRENT_YEAR = 2025
-FIXED_NAME_24 = "Sachuriga"  # The name fixed for the 24th
+FIXED_NAME_24 = "Sachuriga"  # Still assigned here, but hidden in the UI!
 
 # --- Page Setup ---
 st.set_page_config(
@@ -28,6 +28,7 @@ st.markdown("""
         text-align: center;
         font-family: 'Georgia', serif;
     }
+    /* Standard card style for EVERY day */
     .bag-card {
         background-color: white;
         border: 2px solid #165B33;
@@ -36,10 +37,6 @@ st.markdown("""
         margin: 10px 0;
         text-align: center;
         box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-    }
-    .special-card {
-        background-color: #fff0f0; /* Slight red tint for Day 24 */
-        border: 2px solid #D42426;
     }
     .day-number {
         font-size: 24px;
@@ -85,7 +82,7 @@ def get_pickup_date(day, year):
 def allocate_names(names_list):
     """
     Allocates names to 24 random bags (1-23 + extra 8).
-    Day 24 is fixed to Sachuriga.
+    Day 24 is quietly fixed to Sachuriga.
     """
     
     # 1. Clean the list: Remove Sachuriga if they are in the excel file
@@ -133,7 +130,7 @@ def allocate_names(names_list):
             target_bag_index = bag_indices[i % total_random_bags]
             random_bags[target_bag_index]['assigned'].append(person)
 
-    # 3. Create the Fixed Day 24 Bag
+    # 3. Create the Fixed Day 24 Bag (Stealthily)
     bag_24 = {
         'day': 24,
         'assigned': [FIXED_NAME_24]
@@ -149,7 +146,6 @@ def allocate_names(names_list):
 
 st.title("🎅 Secret Advent Calendar Generator 🎄")
 st.markdown("### Distribute the sugary surprises!")
-st.markdown(f"**Note:** Day 24 is reserved for **{FIXED_NAME_24}**.")
 
 # Sidebar
 with st.sidebar:
@@ -185,15 +181,10 @@ if uploaded_file is not None and generate_btn:
                 people_string = " & ".join(bag['assigned'])
                 day_display = f"Day {bag['day']}"
                 
-                # Special styling for Day 24
-                card_class = "bag-card"
-                if bag['day'] == 24:
-                    card_class += " special-card"
-                    day_display += " 🌟"
-
+                # Render the card (No special styling for 24 anymore!)
                 with cols[col_idx]:
                     st.markdown(f"""
-                        <div class="{card_class}">
+                        <div class="bag-card">
                             <div class="day-number">🎁 {day_display}</div>
                             <div class="names">{people_string}</div>
                             <div class="pickup-info">{pickup_text}</div>
